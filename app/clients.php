@@ -2,7 +2,7 @@
 
 class clients{
 
-	public function methode($param){
+	public function methode(){
 
 		$datas = App::getDb()->query('SELECT * FROM client');
 
