@@ -24,12 +24,40 @@
     <script type="text/javascript" src="http://myconsole.matdev.fr/mylog.dev-6.0.0-beta.js"></script>
     <script type="text/javascript">if(typeof log=='undefined'){log={time:function(){},size:function(){},key:function(){},loop:function(){},info:function(){},red:function(){},orange:function(){},yellow:function(){},green:function(){},Green:function(){},blue:function(){},violet:function(){},white:function(){},grey:function(){},black:function(){},show:function(){},important:function(){},alert:function(){},button:function(){},range:function(){}};};</script>
 
-    <style type="text/css">
-    </style>
+<style type="text/css">
+.clients{
+    padding: 5px;
+}
+.client{
+    margin-bottom: 20px;
+}
+.taches{
+    /*padding-left: 15px;*/
+}
+.tache, .label{
+    display: block;
+    padding: 10px;
+    margin-bottom: 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #eee;
+    font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;
+    font-size: 12px;
+}
+.tache{
+    /*padding: 10px 10px 10px 20px;*/
+}
+.label{
+    font-family: "HelveticaNeue", Arial, sans-serif;
+    font-size: 14px;
+    background-color: #ddd;
+    text-transform: uppercase;
+}
+</style>
 </head>
 <body>
 
-    
+    <div id="test"></div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
@@ -42,12 +70,13 @@
             type: 'POST',
             url: 'modules/core.php',
             data: {
-                module: 'clients', 
-                action: 'get_all_clients'
+                module: 'works'
             }
         }).done(function(data) {
 
             log.blue(data);
+
+            $('#test').html(data)
 
         }).fail(function(data) {
             log.green(data,"error");

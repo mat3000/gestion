@@ -2,11 +2,11 @@
 
 class clients{
 
-	public function methode(){
+	public function get_all_client_tache(){
 
-		$datas = App::getDb()->query('SELECT * FROM client');
-
-		// return $datas;
+		$datas = App::getDb()->query('SELECT * FROM client', '\Table\Taches');
+		
+		return $datas;
 
 	}
 
