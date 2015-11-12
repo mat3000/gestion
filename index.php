@@ -25,34 +25,48 @@
     <script type="text/javascript">if(typeof log=='undefined'){log={time:function(){},size:function(){},key:function(){},loop:function(){},info:function(){},red:function(){},orange:function(){},yellow:function(){},green:function(){},Green:function(){},blue:function(){},violet:function(){},white:function(){},grey:function(){},black:function(){},show:function(){},important:function(){},alert:function(){},button:function(){},range:function(){}};};</script>
 
 <style type="text/css">
+
 .clients{
     padding: 5px;
-}
-.client{
-    margin-bottom: 20px;
-}
-.taches{
-    /*padding-left: 15px;*/
-}
-.task, .label{
-    display: block;
-    padding: 10px;
-    margin-bottom: 4px;
-    border-radius: 3px;
-    cursor: pointer;
+    }
+    .client{
+        margin-bottom: 20px;
+        }
+    .taches{
+        /*padding-left: 15px;*/
+        }
+    .task, .label{
+        display: block;
+        padding: 10px;
+        margin-bottom: 4px;
+        border-radius: 3px;
+        cursor: pointer;
+        background-color: #eee;
+        font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;
+        font-size: 12px;
+        }
+    .task{
+        /*padding: 10px 10px 10px 20px;*/
+        }
+    .label{
+        font-family: "HelveticaNeue", Arial, sans-serif;
+        font-size: 14px;
+        background-color: #ddd;
+        text-transform: uppercase;
+        }
+
+.detail{
     background-color: #eee;
-    font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;
-    font-size: 12px;
-}
-.task{
-    /*padding: 10px 10px 10px 20px;*/
-}
-.label{
-    font-family: "HelveticaNeue", Arial, sans-serif;
-    font-size: 14px;
-    background-color: #ddd;
-    text-transform: uppercase;
-}
+    }
+    .input{
+        display: flex;
+        padding: 15px;
+        border-bottom: solid 1px #aaa;
+    }
+    .test{
+        flex: auto;
+    }
+
 </style>
 </head>
 <body>

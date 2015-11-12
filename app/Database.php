@@ -59,7 +59,7 @@ class Database{
 			$req->setFetchMode(PDO::FETCH_CLASS, $class);
 		}else{
 			$req->setFetchMode(PDO::FETCH_OBJ);
-			$req->setFetchMode(PDO::FETCH_ASSOC);
+			// $req->setFetchMode(PDO::FETCH_ASSOC);
 		}
 		
 		if($one){
