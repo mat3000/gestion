@@ -66,21 +66,43 @@
     <script type="text/javascript">
     $(function(){
 
-        $.ajax({
-            type: 'POST',
-            url: 'modules/core.php',
-            data: {
-                module: 'works'
-            }
-        }).done(function(data) {
+        /**
+         *  @param module string
+         *  @param type string : 'html' | 'object'
+         */
+        function getModule(module, type){
 
-            log.blue(data);
+            if(type!=='object')
+                type = 'html'
 
-            $('#test').html(data)
+            $.ajax({
+                type: 'POST',
+                url: 'modules/core.php',
+                data: {
+                    module: module,
+                    type : type
+                }
+            }).done(function(data) {
 
-        }).fail(function(data) {
-            log.green(data,"error");
-        });
+                try {
+                    JSON.parse(data);
+                    data = JSON.parse(data);
+                } catch (e) {
+                    log.loop( data, 'error' );
+                    return;
+                }
+
+                log.blue(data);
+
+                // $('#test').html(data)
+
+            }).fail(function(data) {
+                log.green(data,"error");
+            });
+
+        }
+
+        getModule('works', 'object');
 
     });
     </script>

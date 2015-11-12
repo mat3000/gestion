@@ -1,7 +1,15 @@
 <?php
 
+	$type = isset($_POST['type']) ? $_POST['type'] : false;
+
+
 	$clients = new clients();
 	$res = $clients->get_all_client_tache();
+
+	if($type==='object'){
+		echo json_encode($res);
+		die();
+	}
 
 ?>
 
