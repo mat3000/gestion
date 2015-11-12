@@ -1,10 +1,10 @@
 <?php
 
-class clients{
+class Clients{
 
-	public function get_all_client_tache(){
+	public function get_all_client(){
 
-		$datas = App::getDb()->query('SELECT * FROM client', '\Table\Taches');
+		$datas = App::getDb()->query('SELECT * FROM client', '\Table\Task');
 		
 		return $datas;
 

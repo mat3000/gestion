@@ -34,7 +34,7 @@
 .taches{
     /*padding-left: 15px;*/
 }
-.tache, .label{
+.task, .label{
     display: block;
     padding: 10px;
     margin-bottom: 4px;
@@ -44,7 +44,7 @@
     font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;
     font-size: 12px;
 }
-.tache{
+.task{
     /*padding: 10px 10px 10px 20px;*/
 }
 .label{
@@ -57,7 +57,8 @@
 </head>
 <body>
 
-    <div id="test"></div>
+    <div id="test1"></div>
+    <div id="test2"></div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
@@ -66,43 +67,50 @@
     <script type="text/javascript">
     $(function(){
 
-        /**
-         *  @param module string
-         *  @param type string : 'html' | 'object'
-         */
-        function getModule(module, type){
 
-            if(type!=='object')
-                type = 'html'
 
             $.ajax({
                 type: 'POST',
                 url: 'modules/core.php',
                 data: {
-                    module: module,
-                    type : type
+                    module: 'works-list'
                 }
             }).done(function(data) {
 
-                try {
+                /*try {
                     JSON.parse(data);
                     data = JSON.parse(data);
                 } catch (e) {
                     log.loop( data, 'error' );
                     return;
-                }
+                }*/
 
-                log.blue(data);
+                // log.blue(data);
 
-                // $('#test').html(data)
+                $('#test1').html(data)
 
             }).fail(function(data) {
                 log.green(data,"error");
             });
 
-        }
 
-        getModule('works', 'object');
+
+            $.ajax({
+                type: 'POST',
+                url: 'modules/core.php',
+                data: {
+                    module: 'get-info',
+                    type: 'task',
+                    id : 1
+                }
+            }).done(function(data) {
+
+                $('#test2').html(data);
+
+            }).fail(function(data) {
+                log.green(data,"error");
+            });
+        
 
     });
     </script>

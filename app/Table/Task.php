@@ -4,7 +4,7 @@ namespace Table;
 
 // use \app\App;
 
-class Taches{
+class Task{
 
 	public function __get($get){
 
@@ -16,9 +16,9 @@ class Taches{
 
 	}
 
-	public function getAllTaches(){
+	public function getAllTask(){
 
-		return \App::getDb()->query("SELECT * FROM tache WHERE client_id={$this->id}");
+		return \App::getDb()->query("SELECT * FROM task WHERE client_id={$this->id}");
 
 	}
 

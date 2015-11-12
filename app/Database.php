@@ -29,7 +29,7 @@ class Database{
 
 	}
 
-	public function query($statement, $class=false){
+	public function query($statement, $class=false, $one=false){
 
 		$req = $this->getPDO()->query($statement);
 
@@ -40,23 +40,34 @@ class Database{
 			// $req->setFetchMode(PDO::FETCH_ASSOC);
 		}
 		
-		$datas = $req->fetchAll();
-		// $datas = $res->fetch();
+		if($one){
+			$datas = $res->fetch();
+		}else{
+			$datas = $req->fetchAll();
+		}
 
 		return $datas;
 
 	}
 
-	public function prepare($statement, $attr){
+	public function prepare($statement, $attr, $class=false, $one=false){
 
 		$req = $this->getPDO()->prepare($statement);
 		$req->execute($attr);
 
-		// $req->setFetchMode(PDO::FETCH_CLASS, '\Table\Article');
-		$req->setFetchMode(PDO::FETCH_OBJ);
-		// $req->setFetchMode(PDO::FETCH_ASSOC);
-		$datas = $req->fetch();
-		// $datas = $req->fetchAll();
+		// if($class){
+		// 	$req->setFetchMode(PDO::FETCH_CLASS, $class);
+		// }else{
+			// $req->setFetchMode(PDO::FETCH_OBJ);
+			// $req->setFetchMode(PDO::FETCH_ASSOC);
+		// }
+		
+		// if($one){
+			$datas = $res->fetch();
+		// }else{
+			// $datas = $req->fetchAll();
+		// }
+		
 		return $datas;
 
 	}
