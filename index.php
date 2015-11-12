@@ -94,21 +94,40 @@
             });
 
 
+            $(document).on('click', '.task, .label', function(){
 
-            $.ajax({
-                type: 'POST',
-                url: 'modules/core.php',
-                data: {
-                    module: 'get-info',
-                    type: 'task',
-                    id : 1
+                var id, type;
+                var id_task = parseInt( $(this).attr('data-task-id') );
+                var id_client = parseInt( $(this).attr('data-client-id') );
+
+                if(id_task){
+                    type = 'task';
+                    id = id_task;
+                }else if(id_client){
+                    type = 'client';
+                    id = id_client;
+                }else{
+                    return;
                 }
-            }).done(function(data) {
 
-                $('#test2').html(data);
+                log.green(id, type)
 
-            }).fail(function(data) {
-                log.green(data,"error");
+                $.ajax({
+                    type: 'POST',
+                    url: 'modules/core.php',
+                    data: {
+                        module: 'get-info',
+                        type: type, // task or client
+                        id : id
+                    }
+                }).done(function(data) {
+
+                    $('#test2').html(data);
+
+                }).fail(function(data) {
+                    log.green(data,"error");
+                });
+
             });
         
 

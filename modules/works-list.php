@@ -8,11 +8,12 @@
 <ul class="clients">
 <?php foreach ($res as $v) : ?>
     <li class="client" data-client-id="<?= $v->id; ?>">
-        <span class="label"><?= $v->label; ?></span>
+        <span class="label" data-client-id="<?= $v->id; ?>"><?= $v->label; ?></span>
         <ul class="taches">
 	        <?php foreach ($v->allTask as $vII) : ?>
 	            <li class="task" data-task-id="<?= $vII->id; ?>" ><?= $vII->description ?></li>
 	        <?php endforeach; ?>
+	            <li class="task" >+ Ajouter un tâche...</li>
         </ul>
     </li>
 <?php endforeach; ?>

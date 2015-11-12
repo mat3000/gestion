@@ -10,5 +10,13 @@ class Clients{
 
 	}
 
+	public function get_client($id){
+
+		$datas = App::getDb()->prepare('SELECT * FROM client WHERE id=?', [$id], false, true);
+		
+		return $datas;
+
+	}
+
 
 }

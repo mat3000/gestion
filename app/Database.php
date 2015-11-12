@@ -41,7 +41,7 @@ class Database{
 		}
 		
 		if($one){
-			$datas = $res->fetch();
+			$datas = $req->fetch();
 		}else{
 			$datas = $req->fetchAll();
 		}
@@ -55,19 +55,19 @@ class Database{
 		$req = $this->getPDO()->prepare($statement);
 		$req->execute($attr);
 
-		// if($class){
-		// 	$req->setFetchMode(PDO::FETCH_CLASS, $class);
-		// }else{
-			// $req->setFetchMode(PDO::FETCH_OBJ);
-			// $req->setFetchMode(PDO::FETCH_ASSOC);
-		// }
+		if($class){
+			$req->setFetchMode(PDO::FETCH_CLASS, $class);
+		}else{
+			$req->setFetchMode(PDO::FETCH_OBJ);
+			$req->setFetchMode(PDO::FETCH_ASSOC);
+		}
 		
-		// if($one){
-			$datas = $res->fetch();
-		// }else{
-			// $datas = $req->fetchAll();
-		// }
-		
+		if($one){
+			$datas = $req->fetch();
+		}else{
+			$datas = $req->fetchAll();
+		}
+
 		return $datas;
 
 	}
