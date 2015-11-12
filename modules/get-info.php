@@ -7,7 +7,7 @@
 		$task = new Task();
 		$res = $task->get_task($id);
 	}elseif($type==='client'){
-		$client = new Client();
+		$client = new Clients();
 		$res = $client->get_client($id);
 	}
 
