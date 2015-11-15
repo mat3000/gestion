@@ -2,26 +2,23 @@
 
 namespace Table;
 
-// use \app\App;
+class Task extends Table{
 
-class Task{
+	public function getAllByClientId($id){
 
-	public function __get($get){
-
-		$method = 'get' . ucfirst($get);
-
-		$this->$get = $this->$method();
-
-		return $this->$get;
+		return self::query(
+		   "SELECT task.*, client.* 
+			FROM task 
+			LEFT JOIN client ON client.id=task.client_id 
+			WHERE client.id=?"
+		, [$id], false);
 
 	}
 
-	public function getAllTask(){
+	public function getTaskById($id){
 
-		return \App::getDb()->query("SELECT * FROM task WHERE client_id={$this->id}");
+		return self::query("SELECT * FROM task WHERE id=?", [$id], true);
 
 	}
 
 }
-
-

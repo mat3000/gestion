@@ -40,11 +40,8 @@ class Database{
 			// $req->setFetchMode(PDO::FETCH_ASSOC);
 		}
 		
-		if($one){
-			$datas = $req->fetch();
-		}else{
-			$datas = $req->fetchAll();
-		}
+		if($one) $datas = $req->fetch();
+		else $datas = $req->fetchAll();
 
 		return $datas;
 
@@ -62,11 +59,8 @@ class Database{
 			// $req->setFetchMode(PDO::FETCH_ASSOC);
 		}
 		
-		if($one){
-			$datas = $req->fetch();
-		}else{
-			$datas = $req->fetchAll();
-		}
+		if($one) $datas = $req->fetch();
+		else $datas = $req->fetchAll();
 
 		return $datas;
 

@@ -26,6 +26,22 @@
 
 <style type="text/css">
 
+html, body{
+    height: 100%;
+    font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;        
+}
+
+#test1{ 
+    padding-right: 300px; 
+}
+#test2{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+}
+
 .clients{
     padding: 5px;
     }
@@ -56,6 +72,7 @@
         }
 
 .detail{
+    padding: 30px;
     background-color: #eee;
     }
     .input{

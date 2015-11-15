@@ -1,16 +1,20 @@
-<?php
+<pre><?php
 
-	$id = isset($_POST['id']) ? $_POST['id'] : false;
-	$type = isset($_POST['type']) ? $_POST['type'] : false;
+use \Table\Task;
+use \Table\Client;
 
-	if($type==='task'){
-		$task = new Task();
-		$res = $task->get_task($id);
+$id = isset($_POST['id']) ? $_POST['id'] : false;
+$type = isset($_POST['type']) ? $_POST['type'] : false;
 
-		// var_dump($res);
+if($type==='task'){
+
+	$task = new Task();
+	$res = $task->getTaskById($id);
+
+	// var_dump($res);
 		
-?>
-<div class="detail">
+?></pre>
+<div class="detail" data-client-id="<?= $res->id ?>" >
 
 	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="description"><?= $res->description; ?></div></div>
 	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="status"><?= $res->status; ?></div></div>
@@ -20,17 +24,20 @@
 	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="file"></div></div>
 
 </div>
-<?php
-	}elseif($type==='client'){
-		$client = new Clients();
-		$res = $client->get_client($id);
-		echo '<pre>';
-		var_dump($res);
-		echo '</pre>';
+<pre><?php
 
-?>
-<div class="detail">
+}elseif($type==='client'){
+	$client = new Client();
+	$res = $client->getClientById($id);
+	
+	// var_dump($res);
 
+?></pre>
+<div class="detail" data-client-id="<?= $res->id ?>" >
+
+	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="label"><?= $res->label; ?></div></div>
+	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="url"><?= $res->url; ?></div></div>
+	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="note"><?= $res->note; ?></div></div>
 
 </div>
 <?php
