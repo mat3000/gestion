@@ -7,7 +7,7 @@
 #
 # Hôte: localhost (MySQL 5.5.42)
 # Base de données: gestion
-# Temps de génération: 2015-11-12 20:32:27 +0000
+# Temps de génération: 2015-11-22 00:20:21 +0000
 # ************************************************************
 
 
@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `client`;
 
 CREATE TABLE `client` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `trash` int(1) DEFAULT '0',
   `label` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `note` text,
@@ -37,10 +38,17 @@ CREATE TABLE `client` (
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 
-INSERT INTO `client` (`id`, `label`, `url`, `note`, `file`)
+INSERT INTO `client` (`id`, `trash`, `label`, `url`, `note`, `file`)
 VALUES
-	(1,'client 1 ',NULL,NULL,NULL),
-	(2,'client 2',NULL,NULL,NULL);
+	(1,0,'Total',NULL,'azdazdazd',NULL),
+	(2,0,'ingenico',NULL,NULL,NULL),
+	(4,1,'Nouveau client...',NULL,NULL,NULL),
+	(5,1,'Nouveau client...',NULL,NULL,NULL),
+	(6,1,'Nouveau client...',NULL,NULL,NULL),
+	(7,1,'Nouveau client...',NULL,NULL,NULL),
+	(8,1,'Nouveau client...',NULL,NULL,NULL),
+	(9,1,'Nouveau client...',NULL,NULL,NULL),
+	(10,1,'Nouveau client...',NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -54,6 +62,7 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` int(11) DEFAULT NULL,
+  `trash` int(11) DEFAULT '0',
   `priority` varchar(11) DEFAULT NULL,
   `description` text,
   `status` varchar(11) DEFAULT NULL,
@@ -67,13 +76,27 @@ CREATE TABLE `task` (
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
 
-INSERT INTO `task` (`id`, `client_id`, `priority`, `description`, `status`, `assign_to`, `estimated_time`, `note`, `files`)
+INSERT INTO `task` (`id`, `client_id`, `trash`, `priority`, `description`, `status`, `assign_to`, `estimated_time`, `note`, `files`)
 VALUES
-	(1,1,NULL,'tache 1','en cours',0,'2 jours',NULL,NULL),
-	(2,1,NULL,'tache 2',NULL,NULL,NULL,NULL,NULL),
-	(3,1,NULL,'tache 3',NULL,NULL,NULL,NULL,NULL),
-	(4,2,NULL,'tache 4',NULL,NULL,NULL,NULL,NULL),
-	(5,2,NULL,'tache 5',NULL,NULL,NULL,NULL,NULL);
+	(1,1,0,NULL,'ceci est un test. zf zoeif aizuhefb iazuehfb akzehfb kazehfb kzejhfb akzefhb azeufb zeuhfb izeuhfb izeufhb zeuhfb iezuhfb zejhfb zekjfhbz dedekfjhzebfkzehbfiauzefiaytrc vrvc iezgbc iezab','progress',1,'2 jours','zefzefedede',NULL),
+	(2,1,0,NULL,'tache 2 yyyy','',NULL,'3 jours','ed aedzae fez f',NULL),
+	(3,1,0,NULL,'tache 3','progress',NULL,NULL,NULL,NULL),
+	(4,2,0,NULL,'tache 4','',NULL,NULL,NULL,NULL),
+	(5,2,0,NULL,'tache 5','progress',NULL,NULL,NULL,NULL),
+	(6,1,0,NULL,'tache 6','done',NULL,NULL,NULL,NULL),
+	(44,1,0,NULL,'Nouvelle tâche...','preprod',NULL,NULL,NULL,NULL),
+	(45,1,0,NULL,'Nouvelle tâche...','prod',NULL,NULL,NULL,NULL),
+	(46,1,1,NULL,'Nouvelle tâche...','',NULL,NULL,NULL,NULL),
+	(47,2,0,NULL,'Nouvelle tâche...','done',NULL,NULL,NULL,NULL),
+	(48,1,1,NULL,'Nouvelle tâche...','1',NULL,NULL,NULL,NULL),
+	(49,2,0,NULL,'Nouvelle tâche...','preprod',NULL,NULL,NULL,NULL),
+	(50,1,1,NULL,'Nouvelle tâche...','1',NULL,NULL,NULL,NULL),
+	(51,2,0,NULL,'Nouvelle tâche...','prod',NULL,NULL,NULL,NULL),
+	(53,4,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(54,5,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(55,1,1,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(56,6,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(57,1,1,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -86,9 +109,19 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+
+INSERT INTO `users` (`id`, `name`)
+VALUES
+	(1,NULL);
+
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
