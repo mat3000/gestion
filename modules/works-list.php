@@ -16,6 +16,8 @@
 	            <li class="task <?= $vII->status ?>" data-task-id="<?= $vII->id; ?>" >
 	            	<!-- <span class="status"></span> -->
 	            	<div class="description"><?= $vII->description ?></div>
+
+	            	<div class="assign_to"><?= $vII->assign_to ?></div>
 	            	
 	            	<!-- <select name="personne">
 					    <option value="choix1" selected="selected"></option>

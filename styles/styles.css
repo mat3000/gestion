@@ -68,7 +68,7 @@ html, body{
         text-transform: uppercase;
         }
     .new-task, .new-client{
-        background-color: transparent;
+        /*background-color: transparent;*/
     }
     .task .status{
         display: inline-block;
@@ -88,6 +88,13 @@ html, body{
         border-radius: 0px 3px 3px 0px;
         /*border-left: solid 1px #ccc;*/
         /*background-color: #ddd;*/
+    }
+
+    .task .description{
+        display: inline-block;
+    }
+    .task .assign_to{
+        float: right;
     }
 
     /*.task.progress{
@@ -146,13 +153,16 @@ html, body{
     .truc:last-child{
         border-bottom: none;
     }
-    .input-text{
+    .input-text, .input-button{
         flex: auto;
         padding: 4px;
         font-size: 15px;
         /*margin-top: 5px;*/
         /*vertical-align: middle;*/
         outline:none;
+    }
+    .input-button{
+        cursor: pointer;
     }
     .input-text:focus{
         background-color: rgba(0,0,0,0.05);
