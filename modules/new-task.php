@@ -15,8 +15,8 @@ $id_task = $task->addTask($id_client);
 ?>
 
 <li class="task" data-task-id="<?= $id_task; ?>" >
-	<span class="status"></span>
-	Nouvelle tâche...
+
+	<div class="description">Nouvelle tâche...</div>
 	
 	<!-- <select name="personne">
 	    <option value="choix1" selected="selected"></option>
@@ -25,7 +25,7 @@ $id_task = $task->addTask($id_client);
 	    <option value="choix4">Sophie</option>
 	    <option value="choix4">Moi</option>
 	</select> -->
-	<!-- <div class="status"> -->
+	<div class="status">
     	<select name="status">
 		    <option value="" selected></option>
 		    <option value="progress">en cours</option>
@@ -33,5 +33,5 @@ $id_task = $task->addTask($id_client);
 		    <option value="preprod">PREPROD</option>
 		    <option value="prod">PROD</option>
 		</select>
-	<!-- </div> -->
+	</div>
 </li>

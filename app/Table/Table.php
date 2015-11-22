@@ -36,4 +36,15 @@ class Table{
 
 	}
 
+// magic methode
+	/*public function generateTask($id){
+
+		return '<li class="client" id="client-X" data-client-id="X">
+				    <span class="label" data-client-id="X">Nouveau client...</span>
+				    <ul class="taches">
+				        <li class="new-task" data-client-id="X">+ Ajouter un tâche...</li>
+				    </ul>
+				</li>';
+	}*/
+
 }

@@ -16,7 +16,7 @@ class Client extends Table{
 
 	}
 
-	// magic methode
+// magic methode
 	public function getTasks(){
 
 		// return self::query("SELECT * FROM task WHERE client_id=? AND trash=0", [$this->id]);

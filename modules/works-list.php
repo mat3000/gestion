@@ -15,7 +15,7 @@
 	        <?php foreach ($v->tasks as $vII) :?>
 	            <li class="task <?= $vII->status ?>" data-task-id="<?= $vII->id; ?>" >
 	            	<!-- <span class="status"></span> -->
-	            	<?= $vII->description ?>
+	            	<div class="description"><?= $vII->description ?></div>
 	            	
 	            	<!-- <select name="personne">
 					    <option value="choix1" selected="selected"></option>

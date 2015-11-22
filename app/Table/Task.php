@@ -6,14 +6,6 @@ class Task extends Table{
 
 	public function getAllByClientId($id){
 
-		// return self::query(
-		//    "SELECT task.*, client.* 
-		// 	FROM task 
-		// 	LEFT JOIN client ON client.id=task.client_id 
-		// 	WHERE client.id=?
-		// 	AND task.trash=0"
-		// , [$id], false);
-
 		return self::query("SELECT * FROM task WHERE client_id=? AND trash=0", [$id]);
 
 	}
@@ -36,5 +28,12 @@ class Task extends Table{
 		return self::exec("UPDATE task SET $name = ? WHERE id = ?", [$val, $id]);
 
 	}
+
+// magic methode
+	/*public function getUserByTaskId($id){
+
+		return self::query("SELECT * FROM task WHERE id=?", [$id], true);
+
+	} */
 
 }
