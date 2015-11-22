@@ -144,7 +144,7 @@
             var $this = $(this);
             var id = $this.parents('.detail').attr('data-task-id');
             var name = $this.attr('name')
-            var val = $this.text();
+            var val = $this.html();
             $('.task[data-task-id="'+id+'"] .'+name).text(val);
             updateTask(id, name, val);
         });
@@ -153,7 +153,7 @@
             var $this = $(this);
             var id = $this.parents('.detail').attr('data-client-id');
             var name = $this.attr('name')
-            var val = $this.text();
+            var val = $this.html();
 
             $('#client-'+id+' .'+name).text(val);
 
