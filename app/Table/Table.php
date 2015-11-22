@@ -30,4 +30,10 @@ class Table{
 
 	}
 
+	protected static function exec($statement, $attributes){
+
+		return App::getDb()->exec($statement, $attributes);
+
+	}
+
 }

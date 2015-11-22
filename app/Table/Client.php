@@ -6,7 +6,7 @@ class Client extends Table{
 
 	public function getAllClient(){
 
-		return self::query("SELECT * FROM client");
+		return self::query("SELECT * FROM client WHERE trash=0");
 
 	}
 
@@ -19,7 +19,22 @@ class Client extends Table{
 	// magic methode
 	public function getTasks(){
 
-		return self::query("SELECT * FROM task WHERE client_id=?", [$this->id]);
+		// return self::query("SELECT * FROM task WHERE client_id=? AND trash=0", [$this->id]);
+		$task = new Task();
+		return $task->getAllByClientId($this->id);
+
+	}
+
+	public function addClient(){
+
+		return self::exec('INSERT INTO client(label) VALUES(?)', ['Nouveau client...']);
+
+	}
+
+	public function updateClient($id, $name, $val){
+
+		$name = addslashes($name);
+		return self::exec("UPDATE client SET $name = ? WHERE id = ?", [$val, $id]);
 
 	}
 

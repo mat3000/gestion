@@ -1,0 +1,27 @@
+// http://electron.atom.io
+
+
+// compiler l'application :
+// https://github.com/maxogden/electron-packager
+
+electron-packager <sourcedir> <appname> --platform=<platform> --arch=<arch> --version=<Electron version> [optional flags...]
+
+platform : linux, win32, darwin, all
+
+arch : ia32, x64, all
+
+version : 0.34.0
+
+
+// optional flags :
+
+icon  .icns(OS X:), .ico(Windows)
+
+
+
+
+
+// ex :
+
+electron-packager /Users/mathieubruno/Desktop/test montruc --platform=darwin --arch=x64 --version=0.34.0 --icon='atom.icns'
+

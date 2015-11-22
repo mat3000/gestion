@@ -14,14 +14,14 @@ if($type==='task'){
 	// var_dump($res);
 		
 ?></pre>
-<div class="detail" data-client-id="<?= $res->id ?>" >
+<div class="detail more-task" data-task-id="<?= $res->id ?>" >
 
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="description"><?= $res->description; ?></div></div>
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="status"><?= $res->status; ?></div></div>
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="Assigner à"><?= $res->assign_to; ?></div></div>
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="note"><?= $res->note; ?></div></div>
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="estimation"><?= $res->estimated_time; ?></div></div>
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="file"></div></div>
+	<div class="truc" ><label><span class="icon icon-box"></span> </label><div class="input-text" name="description" contenteditable placeholder="description"><?= $res->description; ?></div></div>
+	<!-- <div class="truc"><label><span class="icon icon-tag"></span></label><div class="input-text" contenteditable="true" placeholder="status"><?= $res->status; ?></div></div> -->
+	<div class="truc"><label><span class="icon icon-user-add"></span></label><div class="input-text" name="assign_to" contenteditable="true" placeholder="Assigner à"><?= $res->assign_to; ?></div></div>
+	<div class="truc"><label><span class="icon icon-pencil"></span></label><div class="input-text" name="note" contenteditable="true" placeholder="note"><?= $res->note; ?></div></div>
+	<div class="truc"><label><span class="icon icon-clock"></span></label><div class="input-text" name="estimated_time" contenteditable="true" placeholder="estimation"><?= $res->estimated_time; ?></div></div>
+	<div class="truc"><label><span class="icon icon-attach"></span></label><div class="input-text" contenteditable="true" placeholder="file"></div></div>
 
 </div>
 <pre><?php
@@ -33,11 +33,13 @@ if($type==='task'){
 	// var_dump($res);
 
 ?></pre>
-<div class="detail" data-client-id="<?= $res->id ?>" >
-
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="label"><?= $res->label; ?></div></div>
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="url"><?= $res->url; ?></div></div>
-	<div class="input"><label>O </label><div class="test" contenteditable="true" placeholder="note"><?= $res->note; ?></div></div>
+<div class="detail more-client" data-client-id="<?= $res->id ?>" >
+	
+	<div class="truc"><label>O </label><div class="input-text" name="label" contenteditable="true" placeholder="label"><?= $res->label; ?></div></div>
+	<div class="truc"><label>O </label><div class="input-text" name="url" contenteditable="true" placeholder="url"><?= $res->url; ?></div></div>
+	<div class="truc"><label>O </label><div class="input-text" name="note" contenteditable="true" placeholder="note"><?= $res->note; ?></div></div>
+<br/>
+	<div class="input-button" name="trash" val="1">supprimer</div>
 
 </div>
 <?php

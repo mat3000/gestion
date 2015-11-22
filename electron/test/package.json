@@ -1,0 +1,9 @@
+{
+  "name": "test",
+  "productName": "test",
+  "main": "main.js",
+  "devDependencies": {
+    "electron-packager": "^5.1.1",
+    "gulp-connect-php": "0.0.7"
+  }
+}

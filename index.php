@@ -16,154 +16,217 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
 
     <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" /> -->
+    <link rel="stylesheet" href="styles/icons.css" />
     <link rel="stylesheet" href="styles/styles.css" />
 
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     
-
-    <script type="text/javascript" src="http://myconsole.matdev.fr/mylog.dev-6.0.0-beta.js"></script>
+    <script type="text/javascript" src="http://myconsole.matdev.fr/mylog.dev-6.0.0.js"></script>
     <script type="text/javascript">if(typeof log=='undefined'){log={time:function(){},size:function(){},key:function(){},loop:function(){},info:function(){},red:function(){},orange:function(){},yellow:function(){},green:function(){},Green:function(){},blue:function(){},violet:function(){},white:function(){},grey:function(){},black:function(){},show:function(){},important:function(){},alert:function(){},button:function(){},range:function(){}};};</script>
 
 <style type="text/css">
 
-html, body{
-    height: 100%;
-    font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;        
-}
-
-#test1{ 
-    padding-right: 300px; 
-}
-#test2{
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 300px;
-}
-
-.clients{
-    padding: 5px;
-    }
-    .client{
-        margin-bottom: 20px;
-        }
-    .taches{
-        /*padding-left: 15px;*/
-        }
-    .task, .label{
-        display: block;
-        padding: 10px;
-        margin-bottom: 4px;
-        border-radius: 3px;
-        cursor: pointer;
-        background-color: #eee;
-        font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;
-        font-size: 12px;
-        }
-    .task{
-        /*padding: 10px 10px 10px 20px;*/
-        }
-    .label{
-        font-family: "HelveticaNeue", Arial, sans-serif;
-        font-size: 14px;
-        background-color: #ddd;
-        text-transform: uppercase;
-        }
-
-.detail{
-    padding: 30px;
-    background-color: #eee;
-    }
-    .input{
-        display: flex;
-        padding: 15px;
-        border-bottom: solid 1px #aaa;
-    }
-    .test{
-        flex: auto;
-    }
-
 </style>
 </head>
-<body>
+<body>  
 
-    <div id="test1"></div>
-    <div id="test2"></div>
+    <div id="header"></div>
+    <div id="work-list"></div>
+    <div id="sidebar">
+        <div class="detail"></div>
+    </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+    <!-- <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script> -->
     <!-- <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
-    <script type="text/javascript" src="js/script.js"></script>
+    <!-- <script type="text/javascript" src="js/script.js"></script> -->
     <script type="text/javascript">
     $(function(){
 
 
 
+        $.ajax({
+            type: 'POST',
+            url: 'modules/core.php',
+            data: {
+                module: 'works-list'
+            }
+        }).done(function(data) {
+
+            $('#work-list').html(data)
+
+        }).fail(function(data) {
+            log.green(data,"error");
+        });
+
+
+        $(document).on('click', '.task, .label', function(){
+
+            // return;
+
+            var id, type;
+            var id_task = parseInt( $(this).attr('data-task-id') );
+            var id_client = parseInt( $(this).attr('data-client-id') );
+
+            $('#work-list').css('padding-right', 300);
+            $('#sidebar').css('right', 0);
+
+            if(id_task){
+                type = 'task';
+                id = id_task;
+            }else if(id_client){
+                type = 'client';
+                id = id_client;
+            }else{
+                return;
+            }
+
+            log.green(id, type)
+
             $.ajax({
                 type: 'POST',
                 url: 'modules/core.php',
                 data: {
-                    module: 'works-list'
+                    module: 'get-info',
+                    type: type, // task or client
+                    id : id
                 }
             }).done(function(data) {
 
-                /*try {
-                    JSON.parse(data);
-                    data = JSON.parse(data);
-                } catch (e) {
-                    log.loop( data, 'error' );
-                    return;
-                }*/
-
-                // log.blue(data);
-
-                $('#test1').html(data)
+                $('#sidebar').html(data);
 
             }).fail(function(data) {
                 log.green(data,"error");
             });
 
+        });
 
-            $(document).on('click', '.task, .label', function(){
+        $(document).on('change', 'select', function(){
+            var $task = $(this).parents('.task');
+            var id = $task.attr('data-task-id');
+            var name = this.name;
+            var val = $(this).val();
+            if(val==='trash'){
+                updateTask(id, 'trash', 1);
+                $task.remove();
+                return;
+            }
+            $(this).parents('.task').removeClass('progress done preprod prod').addClass(val);
+            updateTask(id, name, val);
+        });
 
-                var id, type;
-                var id_task = parseInt( $(this).attr('data-task-id') );
-                var id_client = parseInt( $(this).attr('data-client-id') );
-
-                if(id_task){
-                    type = 'task';
-                    id = id_task;
-                }else if(id_client){
-                    type = 'client';
-                    id = id_client;
-                }else{
-                    return;
+        $(document).on('click', '.new-task', function(){
+            var $this = $(this);
+            var id = $this.attr('data-client-id');
+            $.ajax({
+                type: 'POST',
+                url: 'modules/core.php',
+                data: {
+                    module: 'new-task',
+                    id : id
                 }
+            }).done(function(data) {
 
-                log.green(id, type)
+                $this.before(data);
 
-                $.ajax({
-                    type: 'POST',
-                    url: 'modules/core.php',
-                    data: {
-                        module: 'get-info',
-                        type: type, // task or client
-                        id : id
-                    }
-                }).done(function(data) {
+            }).fail(function(data) {
+                log.green(data,"error");
+            });
+        });
 
-                    $('#test2').html(data);
+        $(document).on('blur', '.more-task .input-text', function(){
+            var $this = $(this);
+            var id = $this.parents('.detail').attr('data-task-id');
+            var name = $this.attr('name')
+            var val = $this.text();
 
-                }).fail(function(data) {
-                    log.green(data,"error");
-                });
+            updateTask(id, name, val);
+        });
+
+        $(document).on('blur', '.more-client .input-text', function(){
+            var $this = $(this);
+            var id = $this.parents('.detail').attr('data-client-id');
+            var name = $this.attr('name')
+            var val = $this.text();
+
+            updateClient(id, name, val);
+        });
+
+        $(document).on('click', '.more-client .input-button', function(){
+            var $this = $(this);
+            var id = $this.parents('.detail').attr('data-client-id');
+            var name = $this.attr('name')
+            var val = $this.text();
+
+            if(name==='trash'){
+                updateClient(id, 'trash', 1);
+                $('#client-'+id).remove();
+                return;
+            }
+
+            updateClient(id, name, val);
+        });
+
+
+        function updateTask(id, name, val){
+
+            $.ajax({
+                type: 'POST',
+                url: 'modules/core.php',
+                data: {
+                    module: 'update-task',
+                    id : id,
+                    name : name,
+                    val : val
+                }
+            }).done(function(data) {
+
+                // log.Green(data);
 
             });
-        
+        };
+
+        function updateClient(id, name, val, callback){
+
+            $.ajax({
+                type: 'POST',
+                url: 'modules/core.php',
+                data: {
+                    module: 'update-client',
+                    id : id,
+                    name : name,
+                    val : val
+                }
+            }).done(function(data) {
+
+                // if(callback) callback();
+
+                log.Green(data);
+
+            });
+        };
+
+
+        $(document).on('click', '.new-client', function(){
+            var $this = $(this);
+            $.ajax({
+                type: 'POST',
+                url: 'modules/core.php',
+                data: {
+                    module: 'new-client'
+                }
+            }).done(function(data) {
+
+                log.Green(data)
+
+                $this.before(data);
+
+            })
+        }); 
 
     });
     </script>
+        
 </body>
 </html>
 
