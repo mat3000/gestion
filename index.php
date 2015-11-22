@@ -43,7 +43,13 @@
     <script type="text/javascript">
     $(function(){
 
-
+        log.button('pull github', function(){
+            $.ajax({
+                url: 'pull-gitub.php'
+            }).done(function(data) {
+                log.green(data);
+            });
+        });
 
         $.ajax({
             type: 'POST',
