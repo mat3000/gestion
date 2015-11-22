@@ -7,7 +7,7 @@
 #
 # Hôte: localhost (MySQL 5.5.42)
 # Base de données: gestion
-# Temps de génération: 2015-11-22 00:20:21 +0000
+# Temps de génération: 2015-11-22 18:17:19 +0000
 # ************************************************************
 
 
@@ -40,7 +40,7 @@ LOCK TABLES `client` WRITE;
 
 INSERT INTO `client` (`id`, `trash`, `label`, `url`, `note`, `file`)
 VALUES
-	(1,0,'Total',NULL,'azdazdazd',NULL),
+	(1,0,'Total','http://www.total.com','azdazdazd',NULL),
 	(2,0,'ingenico',NULL,NULL,NULL),
 	(4,1,'Nouveau client...',NULL,NULL,NULL),
 	(5,1,'Nouveau client...',NULL,NULL,NULL),
@@ -48,7 +48,11 @@ VALUES
 	(7,1,'Nouveau client...',NULL,NULL,NULL),
 	(8,1,'Nouveau client...',NULL,NULL,NULL),
 	(9,1,'Nouveau client...',NULL,NULL,NULL),
-	(10,1,'Nouveau client...',NULL,NULL,NULL);
+	(10,1,'Nouveau client...',NULL,NULL,NULL),
+	(11,1,'Nouveau client...',NULL,NULL,NULL),
+	(12,1,'truc',NULL,NULL,NULL),
+	(13,1,'Nouveau client...',NULL,NULL,NULL),
+	(14,0,'Mon premier client','http://client.com','login : trucpass : machin',NULL);
 
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -66,7 +70,7 @@ CREATE TABLE `task` (
   `priority` varchar(11) DEFAULT NULL,
   `description` text,
   `status` varchar(11) DEFAULT NULL,
-  `assign_to` int(11) DEFAULT NULL,
+  `assign_to` text,
   `estimated_time` varchar(255) DEFAULT NULL,
   `note` text,
   `files` varchar(255) DEFAULT NULL,
@@ -78,25 +82,33 @@ LOCK TABLES `task` WRITE;
 
 INSERT INTO `task` (`id`, `client_id`, `trash`, `priority`, `description`, `status`, `assign_to`, `estimated_time`, `note`, `files`)
 VALUES
-	(1,1,0,NULL,'ceci est un test. zf zoeif aizuhefb iazuehfb akzehfb kazehfb kzejhfb akzefhb azeufb zeuhfb izeuhfb izeufhb zeuhfb iezuhfb zejhfb zekjfhbz dedekfjhzebfkzehbfiauzefiaytrc vrvc iezgbc iezab','progress',1,'2 jours','zefzefedede',NULL),
-	(2,1,0,NULL,'tache 2 yyyy','',NULL,'3 jours','ed aedzae fez f',NULL),
-	(3,1,0,NULL,'tache 3','progress',NULL,NULL,NULL,NULL),
+	(1,1,1,NULL,'ceci est un test. zf zoeif aizuhefb iazuehfb akzehfb kazehfb kzejhfb akzefhb azeufb zeuhfb izeuhfb izeufhb zeuhfb iezuhfb zejhfb zekjfhbz dedekfjhzebfkzehbfiauzefiaytrc vrvc iezgbc iezab <b>okok</b>','','Mathieu','2 jours','zefzefedede',NULL),
+	(2,1,0,NULL,'tache 2','','Alexandra','3 jours','ed aedzae fez f',NULL),
+	(3,1,0,NULL,'tache 3','progress','Mathieu Alexandra',NULL,NULL,NULL),
 	(4,2,0,NULL,'tache 4','',NULL,NULL,NULL,NULL),
-	(5,2,0,NULL,'tache 5','progress',NULL,NULL,NULL,NULL),
+	(5,2,0,NULL,'tache 5','',NULL,NULL,NULL,NULL),
 	(6,1,0,NULL,'tache 6','done',NULL,NULL,NULL,NULL),
 	(44,1,0,NULL,'Nouvelle tâche...','preprod',NULL,NULL,NULL,NULL),
 	(45,1,0,NULL,'Nouvelle tâche...','prod',NULL,NULL,NULL,NULL),
 	(46,1,1,NULL,'Nouvelle tâche...','',NULL,NULL,NULL,NULL),
-	(47,2,0,NULL,'Nouvelle tâche...','done',NULL,NULL,NULL,NULL),
+	(47,2,0,NULL,'Nouvelle tâche...','',NULL,NULL,NULL,NULL),
 	(48,1,1,NULL,'Nouvelle tâche...','1',NULL,NULL,NULL,NULL),
-	(49,2,0,NULL,'Nouvelle tâche...','preprod',NULL,NULL,NULL,NULL),
+	(49,2,0,NULL,'Nouvelle tâche...','',NULL,NULL,NULL,NULL),
 	(50,1,1,NULL,'Nouvelle tâche...','1',NULL,NULL,NULL,NULL),
-	(51,2,0,NULL,'Nouvelle tâche...','prod',NULL,NULL,NULL,NULL),
+	(51,2,0,NULL,'Nouvelle tâche...','',NULL,NULL,NULL,NULL),
 	(53,4,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
 	(54,5,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
 	(55,1,1,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
 	(56,6,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
-	(57,1,1,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL);
+	(57,1,1,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(58,11,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(59,12,0,NULL,'Nouvelle tâche...zdzdzd','progress',NULL,NULL,NULL,NULL),
+	(60,13,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(61,14,0,NULL,'Ma premier tâche',NULL,NULL,NULL,NULL,NULL),
+	(62,2,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(63,14,0,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(64,1,1,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL),
+	(65,1,1,NULL,'Nouvelle tâche...',NULL,NULL,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -110,15 +122,19 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `role` varchar(11) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `name`)
+INSERT INTO `users` (`id`, `name`, `role`, `avatar`)
 VALUES
-	(1,NULL);
+	(1,'mathieu','admin',NULL),
+	(2,'alexandra','worker',NULL),
+	(3,'paul','worker',NULL);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
