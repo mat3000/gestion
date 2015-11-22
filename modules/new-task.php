@@ -32,6 +32,7 @@ $id_task = $task->addTask($id_client);
 		    <option value="finish">OK</option>
 		    <option value="preprod">PREPROD</option>
 		    <option value="prod">PROD</option>
+		    <option value="trash">supprimer</option>
 		</select>
 	</div>
 </li>

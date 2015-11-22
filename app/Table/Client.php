@@ -12,7 +12,7 @@ class Client extends Table{
 
 	public function getClientById($id){
 
-		return self::query("SELECT * FROM client WHERE id=?", [$id], true);
+		return self::query("SELECT * FROM client WHERE id=?", array($id), true);
 
 	}
 
@@ -27,14 +27,14 @@ class Client extends Table{
 
 	public function addClient(){
 
-		return self::exec('INSERT INTO client(label) VALUES(?)', ['Nouveau client...']);
+		return self::exec('INSERT INTO client(label) VALUES(?)', array('Nouveau client...'));
 
 	}
 
 	public function updateClient($id, $name, $val){
 
 		$name = addslashes($name);
-		return self::exec("UPDATE client SET $name = ? WHERE id = ?", [$val, $id]);
+		return self::exec("UPDATE client SET $name = ? WHERE id = ?", array($val, $id));
 
 	}
 
