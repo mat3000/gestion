@@ -29,9 +29,9 @@
 </style>
 </head>
 <body>  
-    <script src="node_modules/electron-open-link-in-browser/build/electron-open-link-in-browser.js"></script>
+    <!-- <script src="node_modules/electron-open-link-in-browser/build/electron-open-link-in-browser.js"></script>
 
-    <a href="http://matdev.fr" onClick="electronOpenLinkInBrowser();">okokko</a>
+    <a href="http://matdev.fr" onClick="electronOpenLinkInBrowser();">okokko</a> -->
 
     <div id="header"></div>
     <div id="work-list"></div>
