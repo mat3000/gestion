@@ -29,6 +29,9 @@
 </style>
 </head>
 <body>  
+    <script src="node_modules/electron-open-link-in-browser/build/electron-open-link-in-browser.js"></script>
+
+    <a href="http://matdev.fr" onClick="electronOpenLinkInBrowser();">okokko</a>
 
     <div id="header"></div>
     <div id="work-list"></div>
@@ -36,12 +39,18 @@
         <div class="detail"></div>
     </div>
 
+
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script> -->
     <!-- <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
     <!-- <script type="text/javascript" src="js/script.js"></script> -->
     <script type="text/javascript">
     $(function(){
+
+        /*log.button(function(){
+            electronOpenLinkInBrowser('http://matdev.fr');
+        });*/
 
         log.button('pull github', function(){
             $.ajax({

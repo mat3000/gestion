@@ -37,7 +37,7 @@ if($type==='task'){
 <div class="detail more-client" data-client-id="<?= $res->id ?>" >
 	
 	<div class="truc"><label><span class="icon icon-box"></span></label><div class="input-text" name="label" contenteditable="true" placeholder="label"><?= $res->label; ?></div></div>
-	<div class="truc"><label><span class="icon icon-compass"></span></label><div class="input-text" name="url" contenteditable="true" placeholder="url"><?= $res->url; ?></div></div>
+	<div class="truc"><label><span class="icon icon-compass"></span></label><div class="input-text" name="url" contenteditable="true" placeholder="url"><?= $res->url; ?><span class="icon icon-right-circled"></span></div></div>
 	<div class="truc"><label><span class="icon icon-pencil"></span></label><div class="input-text" name="note" contenteditable="true" placeholder="note"><?= $res->note; ?></div></div>
 	<div class="truc"><label><span class="icon icon-trash"></span></label><div class="input-button" name="trash">supprimer</div></div>
 	
