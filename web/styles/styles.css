@@ -1,0 +1,325 @@
+/* CSS reset */
+html,body,ol,pre,form,fieldset,blockquote,th,td{margin:0;padding:0;}
+div,ul,li,h1,h2,h3,h4,h5,h6,input,textarea,p{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+ol,ul{list-style:none;}
+.clear{clear:both;}
+*{-moz-box-sizing: border-box;box-sizing: border-box;}
+/* !CSS reset */
+
+html, body{
+    height: 100%;
+    font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;
+    overflow: hidden;
+}
+#header{
+    position: relative;
+    height: 50px;
+    background-color: #555;
+    z-index: 9;
+}
+#work-list{
+    height: 100%;
+    /*overflow: hidden;*/
+    padding-right: 300px; 
+    padding-bottom: 50px;
+}
+
+
+.status-task-module{
+    position: relative;
+    z-index: 9;
+    }
+    .status-task{
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        /*margin-right: 5px;*/
+        border-radius: 14px;
+        border: solid 1px #b5b5b5;
+        vertical-align: top;
+        }
+        .status-task[data-status-label="progress"] {
+            background-color: #ac6d93;
+            border: solid 1px #794d67;
+            animation: progress 1s ease-in-out 0s infinite alternate both;
+            }
+        .status-task[data-status-label="done"] {
+            background-color: #DE9090;
+            border: solid 1px #a96d6d;
+            }
+        .status-task[data-status-label="preprod"] {
+            background-color: #DEC290;
+            border: solid 1px #b59e75;
+            }
+        .status-task[data-status-label="prod"] {
+            background-color: #9EC580;
+            border: solid 1px #738f5d;
+            }
+        .status-task[data-status-label="finish"] {
+            background: transparent url(img/finish.png) no-repeat center;
+            background-size: 12px;
+            }
+        /*.detail.status-task-finish .truc, .task.status-task-finish .status-task, .task.status-task-finish .description {
+            opacity: 0.35;
+            }
+        .status-task-finish .description, .status-task-finish .input-text{
+            text-decoration: line-through;
+            }*/
+        @keyframes progress {
+            0% {background-color: #d29dbc;}
+            100% {background-color: #794d67;}
+            }
+
+        /*@keyframes progress {
+            0% {background-color: #bbb;}
+            100% {background-color: #ddd;}
+            }*/
+    .status-task-list{
+        position: absolute;
+        display: none;
+        background: #fff;
+        padding: 5px;
+        }
+        .status-task-name {
+            padding-left: 23px;
+            }
+        .status-task-list .status-task-li{
+            margin-bottom: 5px;
+            }
+
+
+.clients{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    }
+    .client{
+        margin-bottom: 20px;
+        }
+    .client.hide{
+        margin-bottom: 5px;
+        }
+    .task, .label, .new-task, .new-client{
+        position: relative;
+        display: block;
+        padding: 10px;
+        margin-bottom: 1px;
+        /*border-radius: 3px;*/
+        /*cursor: pointer;*/
+        background-color: #eee;
+        /*font-family: 'HelveticaNeue-Light', "HelveticaNeue", Arial, sans-serif;*/
+        font-size: 14px;
+        cursor: pointer;
+        color: #4d4d4d;
+        }
+    .task{
+        padding: 10px;
+        }
+    .label, .new-client{
+        font-family: "HelveticaNeue", Arial, sans-serif;
+        font-size: 16px;
+        background-color: #ccc;
+        color: #4d4d4d;
+        text-transform: uppercase;
+        }
+
+    .task .description{
+        /*display: inline-block;*/
+        vertical-align: top;
+        margin-left: 10px;
+        padding: 0 0 0 20px;
+    }
+    .task .status-task{
+        position: absolute;
+    }
+    .task .assign_to{
+        float: right;
+    }
+    .task:hover{
+        background-color: #f4f4f4;
+    }
+    .task.current{
+        background-color: #fff;
+        z-index: 99;
+    }
+    .task[data-task-status="finish"] .description{
+        opacity: 0.35;
+        text-decoration: line-through;
+        }
+    
+    /*.task.current:after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: -6px;
+        top: 0;
+        width: 0;
+        height: 0;
+        border: solid 19px transparent;
+        border-right: 10px solid #eee;
+    }*/
+
+    .label .icon-down-open{
+        display: inline-block;
+        /*margin-left: 4px;*/
+        margin-right: 7px;
+        font-size: 17px;
+        padding: 0px 4px;
+        transition: all 0.3s ease-in-out;
+    }
+    .label .icon-down-open.close{
+        transform: rotate(-180deg);
+    }
+
+    /*.task, .new-task{
+        transform-origin: top center;
+        transition: transform 0.3s ease-in-out;
+        }
+
+    .hide .task, .hide .new-task{
+        transform: scaleY(0);
+        }*/
+
+    /*.taches{
+        transform-origin: top center;
+        transition: transform 0.3s ease-in-out;
+        }
+
+    .hide .taches{
+        transform: scaleY(0);
+        }
+*/
+
+
+
+    select{
+        position: relative;
+        margin: 9px 10px 0 0;
+    }
+
+#sidebar{
+    position: fixed;
+    top: 0;
+    right: -300px;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    padding-top: 50px;
+}
+
+.detail{
+    height: 100%;
+    padding: 30px;
+    background-color: #eee;
+    overflow-x: hidden;
+    overflow-y: auto;
+    }
+    .detail .status-task{
+        width: 20px;
+        height: 20px;
+        margin-top: 4px;
+        margin-left: -2px;
+        margin-right: 12px;
+        }
+    .detail .truc{
+        position: relative;
+        padding: 10px;
+        border-bottom: solid 1px #aaa;
+    }
+    .detail .truc:last-child{
+        border-bottom: none;
+    }
+    .detail .wrap{
+        position: relative;
+        padding-left: 30px;
+    }
+    .detail .input{
+        position: relative;
+        padding: 4px;
+        font-size: 15px;
+        outline:none;
+    }
+    .detail .input .placeholder{
+        opacity: 0.4;
+        /*font-style: italic;*/
+    }
+    .detail .status-task{
+        position: absolute;
+    }
+    .detail .input-button{
+        cursor: pointer;
+    }
+    .detail .input-text.linked{
+        padding-right: 26px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .detail .input-text:focus{
+        background-color: rgba(0,0,0,0.05);
+        box-shadow:inset 1px 1px 0px 0px rgba(0,0,0,0.1);
+        white-space: normal;
+    }
+
+    .detail .input-select{
+        cursor: pointer;
+        display: block;
+        min-height: 24px;
+        }
+        .detail .input-select::after{
+            content: '↓';
+            position: absolute;
+            right: 0;
+            top: 0;
+            }
+        .detail .input-select .select{
+            display: none;
+            }
+        .detail .input-select .select.default{
+            display: block;
+            }
+        .detail .input-select .select-all{
+            position: absolute;
+            width: 100%;
+            background-color: red;
+            z-index: 9999;
+            }
+        .detail .input-select .select-all .select{
+            display: block;
+            }
+    .detail .icon{
+        position: absolute;
+        color: #666;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+    .detail .icon-right-circled{
+        position: absolute;
+        top: 1px;
+        right: 4px;
+        cursor: pointer;
+        padding-left: 2px;
+        margin-right: 0px;
+        opacity: 0.8;
+    }
+    .detail[data-task-status="finish"] .input{
+        opacity: 0.35;
+        text-decoration: line-through;
+        }
+
+
+
+
+
+
+.sortable-ghost{
+    opacity: 0;
+}
+
