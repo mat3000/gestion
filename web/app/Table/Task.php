@@ -51,6 +51,7 @@ class Task extends Table{
 		            	<div class=\"description\">{$task->description}</div>
 		            </li>";
 		}
+		$html .= "<li class=\"new-task\" data-client-id=\"$clientId\">+ Ajouter un tâche...</li>";
 		$html .= '</ul>';
 
 		return $html;

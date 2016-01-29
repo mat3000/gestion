@@ -1,0 +1,66 @@
+
+Allow from all
+Satisfy any
+
+
+# ENABLE INDEXING
+	Options +Indexes
+	IndexIgnore @eaDir
+
+# INDEX OPTIONS
+	IndexOptions +FancyIndexing +IgnoreCase +FoldersFirst +XHTML +HTMLTable +SuppressRules +SuppressDescription
+
+# HIDE /system DIRECTORY
+	IndexIgnore .htaccess /public/system favicon.ico
+
+#
+# AddIcon /share/system/icons/blank.png ^^BLANKICON^^
+#
+
+	AddIcon /public/system/icons/blank.png ^^BLANKICON^^
+	AddIcon /public/system/icons/folder.png ^^DIRECTORY^^
+	AddIcon /public/system/icons/folder-home.png ..
+
+#
+# EXTENSION SPECIFIC ICONS
+#
+	
+	AddIcon /public/system/icons/audio.png .aif .iff .m3u .m4a .mid .mp3 .mpa .ra .wav .wma
+	AddIcon /public/system/icons/bin.png .bin
+	AddIcon /public/system/icons/c.png .c
+	AddIcon /public/system/icons/calc.png .xlsx .xlsm .xltx .xltm .xlam .xlr .xls .csv 
+	AddIcon /public/system/icons/css.png .css
+	AddIcon /public/system/icons/doc.png .doc .docx .docm .dot .dotx .dotm .log .msg .odt .pages .rtf .tex .wpd .wps
+	AddIcon /public/system/icons/draw.png .svg
+	AddIcon /public/system/icons/eps.png .ai .eps
+	AddIcon /public/system/icons/gif.png .gif
+	AddIcon /public/system/icons/html.png .html .xhtml .shtml .htm
+	AddIcon /public/system/icons/ico.png .ico
+	AddIcon /public/system/icons/java.png .jar
+	AddIcon /public/system/icons/jpg.png .jpg .jpeg
+	AddIcon /public/system/icons/js.png .js .json
+	AddIcon /public/system/icons/markdown.png .md
+	AddIcon /public/system/icons/package.png .pkg .dmg 
+	AddIcon /public/system/icons/pdf.png .pdf
+	AddIcon /public/system/icons/php.png .php
+	AddIcon /public/system/icons/png.png .png
+	AddIcon /public/system/icons/ps.png .ps
+	AddIcon /public/system/icons/psd.png .psd
+	AddIcon /public/system/icons/rar.png .rar
+	AddIcon /public/system/icons/rb.png .rb
+	AddIcon /public/system/icons/rss.png .rss
+	AddIcon /public/system/icons/sql.png .sql
+	AddIcon /public/system/icons/tiff.png .tiff
+	AddIcon /public/system/icons/text.png .txt
+	AddIcon /public/system/icons/video.png .asf .asx .avi .flv .mov .mp4 .mpg .rm .srt .swf .vob .wmv
+	AddIcon /public/system/icons/xml.png .xml
+	AddIcon /public/system/icons/zip.png .zip
+	DefaultIcon /public/system/icons/default.png
+
+#
+# system FILES
+#
+
+	HeaderName /public/system/header.html
+	ReadmeName /public/system/footer.html
+	IndexStyleSheet /public/system/style.css

@@ -1,8 +1,9 @@
 <?php
 
 use \Table\Task;
+use \Table\Status;
 
-$id_client = isset($_POST['id']) ? $_POST['id'] : false;
+$id_client = isset($_POST['id_client']) ? $_POST['id_client'] : false;
 
 if(!$id_client){
 	echo 'id client manquant';
@@ -10,29 +11,12 @@ if(!$id_client){
 }
 
 $task = new Task();
+$status = new Status();
+
 $id_task = $task->addTask($id_client);
 
 ?>
-
-<li class="task" data-task-id="<?= $id_task; ?>" >
-
+<li class="task" data-task-id="<?= $id_task; ?>" data-task-status="<?php $status->getStatusByTaskId($id_task); ?>" >
+	<?= $status->getStatusByTaskIdHTML($id_task); ?>
 	<div class="description">Nouvelle tâche...</div>
-	
-	<!-- <select name="personne">
-	    <option value="choix1" selected="selected"></option>
-	    <option value="choix2">Mohamed</option>
-	    <option value="choix3">Arnaud</option>
-	    <option value="choix4">Sophie</option>
-	    <option value="choix4">Moi</option>
-	</select> -->
-	<div class="status">
-    	<select name="status">
-		    <option value="" selected></option>
-		    <option value="progress">en cours</option>
-		    <option value="finish">OK</option>
-		    <option value="preprod">PREPROD</option>
-		    <option value="prod">PROD</option>
-		    <option value="trash">supprimer</option>
-		</select>
-	</div>
 </li>

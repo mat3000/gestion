@@ -258,13 +258,14 @@
 
         $(document).on('click', '.new-task', function(){
             var $this = $(this);
-            var id = $this.attr('data-client-id');
+            var id_client = $this.attr('data-client-id');
+
             $.ajax({
                 type: 'POST',
                 url: 'modules/core.php',
                 data: {
                     module: 'new-task',
-                    id : id
+                    id_client : id_client
                 }
             }).done(function(data) {
 

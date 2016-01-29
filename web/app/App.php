@@ -2,10 +2,15 @@
 
 class App{
 
-	const DB_NAME = 'gestion';
-	const DB_USER = 'root';
-	const DB_PASS = 'root';
-	const DB_HOST = 'localhost';
+	// const DB_HOST = 'localhost';
+	// const DB_NAME = 'gestion';
+	// const DB_USER = 'root';
+	// const DB_PASS = 'root';
+
+	const DB_HOST = 'matdevpro.mysql.db';
+	const DB_NAME = 'matdevpro';
+	const DB_USER = 'matdevpro';
+	const DB_PASS = 'nDjx0sfK';
 
 	private static $database;
 
