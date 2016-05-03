@@ -32,6 +32,30 @@ class Task extends Table{
 
 	}
 
+	public function updateStatus($task_id, $status_id){
+
+		self::exec("UPDATE task SET status_id=? WHERE id=?", [$status_id, $task_id]);
+		$this->updateStatus_history($task_id, $status_id);
+
+	}
+
+	private function updateStatus_history($task_id, $status_id){
+
+		$status_history = self::query("SELECT status_history FROM task WHERE id=?", [$task_id], true);
+
+		$array = json_decode($status_history->status_history);
+
+		if( !is_array($array) ) $array = [];
+
+		$array[] = array(
+			'status' => $status_id,
+			'date' => date('Y-m-d G:i:s')
+		);
+
+		self::exec("UPDATE task SET status_history=? WHERE id=?", [ json_encode($array) , $task_id]);
+
+	}
+
 	/**
 	 * 
 	 */

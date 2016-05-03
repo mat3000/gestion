@@ -16,7 +16,7 @@
 <ul class="clients">
 <?php foreach ($allClient as $client) : ?>
     <li class="client" data-client-id="<?= $client->id; ?>">
-        <span class="label" data-client-id="<?= $client->id; ?>"><span class="icon icon-down-open"></span><?= $client->label; ?></span>
+    	<div class="label" data-client-id="<?= $client->id; ?>"><span class="icon icon-down-open"></span><?= $client->label; ?><div class="count"></div></div>
        	<?= $client->tasks ?>
     </li>
 <?php endforeach; ?>

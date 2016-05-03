@@ -14,8 +14,38 @@ if($type==='task'){
 	$res = $task->getTaskById($id);
 	$statusLabel = $status->getStatusByTaskId($res->id);
 
+
+	// $time = $task->getStatus_history($res->id);
+
 	// var_dump($res);
 	// var_dump($statusTask);
+
+
+	$history = json_decode($res->status_history);
+
+	$start = null;
+	$end = null;
+	if($history){
+		foreach ($history as $v) {
+			echo $v->status .'->'. $v->date . '<br>';
+
+			if($v->status==2) {
+				$start = $v->date;
+				$end= null;
+			}
+
+			if($v->status==3 ||$v->status==4 ||$v->status==5) $end = $v->date;
+
+			if($v->status==1 ) $start = null; 
+		}
+	}
+
+	if( $start && $end ){
+		echo '$start : ' . $start . '<br>';
+		echo '$end : ' . $end . '<br>';
+
+		echo  $end - $start;
+	}
 		
 ?></pre>
 <div class="detail more-task" data-task-id="<?= $res->id ?>" data-task-status="<?= $statusLabel ?>" >
@@ -57,6 +87,12 @@ if($type==='task'){
 		</div>
 	</div>
 	<div class="truc">
+		<span class="icon icon-clock"></span>
+		<div class="wrap">
+			<div class="input input-text disable" contenteditable="false" placeholder="time"></div>
+		</div>
+	</div>
+	<div class="truc">
 		<span class="icon icon-attach"></span>
 		<div class="wrap">
 			<div class="input input-text" contenteditable="true" placeholder="fichier"></div>
@@ -70,7 +106,7 @@ if($type==='task'){
 	$client = new Client();
 	$res = $client->getClientById($id);
 	
-	var_dump($res->Urls);
+	// var_dump($res->Urls);
 
 ?></pre>
 <div class="detail more-client" data-client-id="<?= $res->id ?>" >

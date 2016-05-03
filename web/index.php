@@ -59,6 +59,12 @@
                 $tasks.slideDown(300);
         });
 
+        /*$(document).on('mouseenter', '.status-task-module > .status-task', function(){
+            $(this).html('x');
+        }).on('mouseleave', '.status-task', function(){
+            $(this).html('');
+        });*/
+
 
 
         /*log.button('pull github', function(){
@@ -77,7 +83,9 @@
             }
         }).done(function(data) {
 
-            $('#work-list').html(data)
+            $('#work-list').html(data);
+            
+            updateCount();
 
             /*var list = $('.taches')[0];
             Sortable.create(list, {
@@ -127,6 +135,7 @@
 
                 $('#sidebar').html(data);
                 update_placeholder();
+
 
             }).fail(function(data) {
                 log.green(data,"error");
@@ -204,6 +213,7 @@
 
         }
         $(document).on('focus', '.input', function(){
+            if($(this).hasClass('disable')) return;
             $('.placeholder', this).remove();
             // $(this).focus();
         });
@@ -234,7 +244,7 @@
             var statusLabel = $this.attr('data-status-label');
             var taskId = $this.parents('.status-task-module').attr('data-task-id');
 
-            updateTask(taskId, 'status_id', statusId, function(){
+            updateStatus(taskId, statusId, function(){
                 $('.status-task-module[data-task-id="'+taskId+'"]>.status-task').attr('data-status-label', statusLabel);
                 $('.task[data-task-id="'+taskId+'"]').attr('data-task-status', statusLabel);
                 $('#sidebar>.detail').attr('data-task-status', statusLabel);
@@ -354,6 +364,51 @@
 
             });
         };
+
+        function updateStatus(id, val, callback){
+
+            log.yellow({id:id,val:val}, 'updateStatus()')
+
+
+
+            $.ajax({
+                type: 'POST',
+                url: 'modules/core.php',
+                data: {
+                    module: 'update-status',
+                    id : id,
+                    val : val
+                }
+            }).done(function(data) {
+
+                log.green(data);
+
+                if(callback) callback();
+                // log.yellow(data);
+                updateCount();
+
+            });
+        };
+
+
+
+        function updateCount(){
+            var $client = $('.client');
+            $('.count').html('');
+            for (var i = 0; i < $client.length; i++) {
+                var $this = $($client[i]);
+                var $count = $('.count', $this);
+                var count_todo = $('.task[data-task-status="none"]', $this).length;
+                var count_progress = $('.task[data-task-status="progress"]', $this).length;
+
+                if(count_todo!=0)
+                    $count.append('<span class="count-todo">'+count_todo+'</span>');
+                if(count_progress!=0)
+                    $count.append('<span class="count-progress">'+count_progress+'</span>');
+
+
+            };
+        }
 
         function updateClient(id, name, val, callback){
 

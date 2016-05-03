@@ -6,6 +6,7 @@ class Status extends Table{
 
 	private $allStatus;
 
+
 	/**
 	 * get task status
 	 * @param $id -> string/number : status id 
