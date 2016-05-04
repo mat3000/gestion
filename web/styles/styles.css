@@ -61,14 +61,23 @@ html, body{
             border: solid 1px #738f5d;
             }
         .status-task[data-status-label="cancel"] {
-            background: transparent url(img/cancel.png) no-repeat center;
+            // background: transparent url(img/cancel.png) no-repeat center;
+            background-color: #e3e3e3;
             background-size: 12px;
-            border: solid 1px #b5b5b5;
+            border: solid 1px #d8d8d8;
             }
         .status-task[data-status-label="finish"] {
             background: transparent url(img/finish.png) no-repeat center;
             background-size: 12px;
             border: solid 1px #b5b5b5;
+            }
+        .status-task[data-status-label="remove"] {
+            background: transparent url(img/cancel.png) no-repeat center;
+            // background: transparent url(img/finish.png) no-repeat center;
+            // background-color: #000;
+            background-size: 12px;
+            border: solid 1px #b5b5b5;
+            // border: solid 1px #000;
             }
         /*.detail.status-task-finish .truc, .task.status-task-finish .status-task, .task.status-task-finish .description {
             opacity: 0.35;
@@ -176,6 +185,9 @@ html, body{
         z-index: 99;
     }
     .task[data-task-status="cancel"] .description{
+        opacity: 0.2;
+        }
+    .task[data-task-status="remove"] .description{
         opacity: 0.35;
         text-decoration: line-through;
         }
@@ -336,6 +348,10 @@ html, body{
         opacity: 0.8;
     }
     .detail[data-task-status="cancel"] .input{
+        opacity: 0.2;
+        }
+
+    .detail[data-task-status="remove"] .input{
         opacity: 0.35;
         text-decoration: line-through;
         }

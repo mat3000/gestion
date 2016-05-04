@@ -9,7 +9,7 @@ class Task extends Table{
 
 	public function getTaskByClientId($id){
 
-		return self::query("SELECT * FROM task WHERE client_id=? AND trash=0", [$id]);
+		return self::query("SELECT * FROM task WHERE client_id=? AND status_id!=7", [$id]);
 
 	}
 

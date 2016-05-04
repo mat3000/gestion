@@ -32,7 +32,9 @@
 
     <!-- <a href="http://google.fr" onClick="electronOpenLinkInBrowser();">okokko</a> -->
 
-    <div id="header"></div>
+    <div id="header">
+        <a href="index.php" class="actualiser"><img src="styles/img/reload.png" width="30" style="margin:10px; float:right;"/></a>
+    </div>
     <div id="sidebar">
         <div class="detail"></div>
     </div>
